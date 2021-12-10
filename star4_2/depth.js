@@ -68,11 +68,14 @@ for (let n = 0; n < calledNumbers.length; n++) {
 
                     //If the card is not already a winner, then mark the number in the card
                     if (!cards[c].isWinner) {
+
                         //Let's increment the value for the hits accummulator (we'll use it for the total)
                         cards[c].hitValues += parseInt(calledNumbers[n]);
                         //decrement the number from the total sum of each row and col
-                        cards[c].values[0][r] -= calledNumbers[n];
-                        cards[c].values[1][item] -= calledNumbers[n];
+                        // cards[c].values[0][r] -= calledNumbers[n];
+                        // cards[c].values[1][item] -= calledNumbers[n];
+                        cards[c].values[0][r]--;
+                        cards[c].values[1][item]--;
                     }
                     //If this row/col hit 0, it means we have bingo
                     if (cards[c].values[0][r] === 0 || cards[c].values[1][item] === 0) {
@@ -111,19 +114,17 @@ function countValues(data) {
     let totalValue = 0;
 
     //Create a values array to pass back.
+    //Fill the rows and columns with #5 so we can decrement for every hit.
+    // Once we hit 0 on any col or row, it means we have bingo.
     let values = [];
-    values.push(Array(5).fill(0));
-    values.push(Array(5).fill(0));
+    values.push(Array(5).fill(5));
+    values.push(Array(5).fill(5));
 
     //let's go through all items so we can sum them up
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].length; j++) {
             //sum the total value
             totalValue += parseInt(data[i][j]);
-            //sum each row
-            values[0][i] += parseInt(data[i][j]);
-            //sum each column
-            values[1][j] += parseInt(data[i][j]);
         }
     }
     return [totalValue, values];
