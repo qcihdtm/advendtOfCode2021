@@ -23,6 +23,8 @@ for (let i = 2; i < data.length; i += 6) {
     cards.push(c)
 }
 
+console.log(cards.length)
+
 loop1:
 for (let n = 0; n < calledNumbers.length; n++) {
     loop2:
@@ -45,11 +47,11 @@ for (let n = 0; n < calledNumbers.length; n++) {
                         if (!cards[c].done) {
                             winningCards++;
                             cards[c].done = true;
-                            console.log(c, " ", cards[c].done," Bingo! ", " Marked: ", cards[c].hitValues, " Remains: ", cards[c].totalValue - cards[c].hitValues, " Last Number: ", calledNumbers[n], "Result: ", calledNumbers[n] * (cards[c].totalValue - cards[c].hitValues))
+                            console.log(c, " ", cards[c].done," Bingo! ", " Marked: ", cards[c].hitValues, " Remains: ", cards[c].totalValue - cards[c].hitValues, " Last Number: ", parseInt(calledNumbers[n]), "Result: ", parseInt(calledNumbers[n]) * (cards[c].totalValue - cards[c].hitValues))
                         }
                         if (winningCards === cards.length) {
                             console.log(cards[c]);
-                            console.log("Last Bingo!: ", " Marked: ", cards[c].hitValues, " Remains: ", cards[c].totalValue - cards[c].hitValues, " Last Number: ", calledNumbers[n], "Result: ", calledNumbers[n] * (cards[c].totalValue - cards[c].hitValues))
+                            console.log("Last Bingo!: ", " Marked: ", cards[c].hitValues, " Remains: ", cards[c].totalValue - cards[c].hitValues, " Last Number: ", parseInt(calledNumbers[n]), "Result: ", parseInt(calledNumbers[n]) * (cards[c].totalValue - cards[c].hitValues))
                             break loop1;
                         }
                     }
